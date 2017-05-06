@@ -5,26 +5,39 @@
   <meta name=viewport content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <title>PAGE TITLE</title>
   <link rel="icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/reset.css">
-  <link rel="stylesheet" href="/icon.css">
   <style>
+    /* reset */
+    body, h1, h2, h3, h4, h5, h6, p {
+      margin: 0;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-size:100%;
+      font-weight:normal;
+    }
+
+    /* layout */
     .hgl-header__above  { grid-area: header-above; position: fixed; width: 100%; }
     .hgl-header__below  { grid-area: header-below }
     .hgl-middle__left   { grid-area: middle-left; }
-    .hgl-middle__center { grid-area: middle-center; margin: 0 15px; }
+    .hgl-middle__center { grid-area: middle-center; }
     .hgl-middle__right  { grid-area: middle-right; }
-    .hgl-footer         { grid-area: footer }
+    .hgl-footer__space  { grid-area: footer-space; }
+    .hgl-footer         { grid-area: footer; height: 60px; }
     .hgl-container {
       display: grid;
       grid-template-areas: "header-above header-above header-above"
                            "header-below header-below header-below"
+                           "header-space header-space header-space"
                            "middle-left middle-center middle-right"
+                           "footer-space footer-space footer-space"
                            "footer footer footer";
       grid-template-columns: 200px 1fr 200px;
       grid-template-rows: 55px
                           45px
+                          15px
                           1fr
-                          40px;
+                          15px;
+                          60px;
       min-height: 100vh;
     }
     @media(max-width: 768px) {
@@ -32,7 +45,9 @@
         display: grid;
         grid-template-areas: "header-above"
                              "header-below"
+                             "header-space"
                              "middle-center"
+                             "footer-space"
                              "footer";
         grid-template-columns: 100%;
       }
@@ -41,11 +56,31 @@
       }
     }
 
-    .view-header__above, .view-footer {
-      background-color: #45b;
-      z-index: 1
+    /* view common */
+    .shadow {
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
+                  0 3px 1px -2px rgba(0, 0, 0, .2),
+                  0 1px 5px 0 rgba(0, 0, 0, .12);
     }
-    .view-header__bellow {
+    .shadow--bottom {
+      box-shadow: 0 2px 2px -2px rgba(0, 0, 0, .14),
+                  0 3px 1px -1px rgba(0, 0, 0, .2),
+                  0 1px 5px -5px rgba(0, 0, 0, .12);
+    }
+    .hgl-header__above  { z-index: 8; }
+    .hgl-header__below  { z-index: 7; }
+    .hgl-header__space  { z-index: 6; }
+    .hgl-middle__left   { z-index: 5; }
+    .hgl-middle__center { z-index: 5; }
+    .hgl-middle__right  { z-index: 5; }
+    .hgl-footer__space  { z-index: 1; }
+    .hgl-footer  { z-index: 0; }
+
+    /* view header / footer */
+    .view-header__above {
+      background-color: #45b;
+    }
+    .view-header__bellow, .view-footer {
       background-color: #ddf;
     }
     .view-header--blog-title {
@@ -58,18 +93,22 @@
       color: #000;
       height: 45px;
       line-height: 45px;
-      margin-left: 24px;
+      margin-left: 17px;
     }
     .view-common--title {
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
       font-size: 20px;
       font-weight: 400;
-      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
       letter-spacing: .02em;
     }
-    .shadow {
-      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
-                  0 3px 1px -2px rgba(0, 0, 0, .2),
-                  0 1px 5px 0 rgba(0, 0, 0, .12);
+    .view-footer {
+      padding-top: 15px;
+    }
+    .view-fotter--metainfo {
+      color: #777;
+      font-size: 14px;
+      font-style: italic;
+      text-align: center;
     }
     @media(min-width: 768px) {
       .view-header--blog-title {
@@ -78,7 +117,44 @@
       .menu.icon {
         display: none;
       }
+      .view-header--page-title {
+        margin-left: 30px;
+      }
     }
+
+    /* icon */
+    .menu.icon {
+      background-color: currentColor;
+      border-radius: 1px;
+      color: #fff;
+      height: 2px;
+      left: .5px;
+      margin-left: 18px;
+      margin-top: 27px;
+      position: absolute;
+      width: 19px;
+    }
+    .menu.icon:before {
+      background-color: currentColor;
+      border-radius: 1px;
+      content: '';
+      height: 2px;
+      left: 0;
+      position: absolute;
+      top: -5px;
+      width: 19px;
+    }
+    .menu.icon:after {
+      background-color: currentColor;
+      border-radius: 1px;
+      content: '';
+      height: 2px;
+      left: 0;
+      position: inherit;
+      top: 5px;
+      width: 19px;
+    }
+
   </style>
 </head>
 <body class="hgl-container">
@@ -86,11 +162,9 @@
     <i class="menu icon" onclick="console.log('test')"></i>
     <a><span class="view-header--blog-title view-common--title">BLOG TITLE</span></a>
   </header>
-
   <header class="hgl-header__below view-header__bellow shadow">
     <h1 class="view-header--page-title view-common--title">PAGE TITLE</h1>
   </header>
-
   <nav class="hgl-middle__left">
     <header><span>Menu</span></header>
     <ul>
@@ -100,7 +174,6 @@
     </ul>
   </nav>
   <main class="hgl-middle__center">
-    <header><h1>PAGE TITLE</h1></header>
     <article>
       <header><h1>ARTICLE TITLE1</h1></header>
       <p>Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text.</p>
@@ -113,8 +186,12 @@
   <aside class="hgl-middle__right">
     <header><span>ASIDE TITLE</span></header>
   </aside>
+  <div class="hgl-footer__space shadow--bottom"></div>
   <footer class="hgl-footer view-footer">
-    <a><span>SAMPLE BLOG</span></a>
+    <div class="view-fotter--metainfo">
+      <p>author: <a rel="author">matsubyzzz</a></p>
+      <p>date: <time datetime="2017-05-07">2017/05/07</time></p>
+    </div>
   </footer>
 </middle>
 </html>
