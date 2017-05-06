@@ -1,0 +1,120 @@
+<!DOCTYPE>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name=viewport content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <title>PAGE TITLE</title>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/icon.css">
+  <style>
+    .hgl-header__above  { grid-area: header-above; position: fixed; width: 100%; }
+    .hgl-header__below  { grid-area: header-below }
+    .hgl-middle__left   { grid-area: middle-left; }
+    .hgl-middle__center { grid-area: middle-center; margin: 0 15px; }
+    .hgl-middle__right  { grid-area: middle-right; }
+    .hgl-footer         { grid-area: footer }
+    .hgl-container {
+      display: grid;
+      grid-template-areas: "header-above header-above header-above"
+                           "header-below header-below header-below"
+                           "middle-left middle-center middle-right"
+                           "footer footer footer";
+      grid-template-columns: 200px 1fr 200px;
+      grid-template-rows: 55px
+                          45px
+                          1fr
+                          40px;
+      min-height: 100vh;
+    }
+    @media(max-width: 768px) {
+      .hgl-container {
+        display: grid;
+        grid-template-areas: "header-above"
+                             "header-below"
+                             "middle-center"
+                             "footer";
+        grid-template-columns: 100%;
+      }
+      .hgl-middle__left, .hgl-middle__right {
+        display: none;
+      }
+    }
+
+    .view-header__above, .view-footer {
+      background-color: #45b;
+      z-index: 1
+    }
+    .view-header__bellow {
+      background-color: #ddf;
+    }
+    .view-header--blog-title {
+      color: #fff;
+      height: 55px;
+      line-height: 55px;
+      margin-left: 55px;
+    }
+    .view-header--page-title {
+      color: #000;
+      height: 45px;
+      line-height: 45px;
+      margin-left: 24px;
+    }
+    .view-common--title {
+      font-size: 20px;
+      font-weight: 400;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      letter-spacing: .02em;
+    }
+    .shadow {
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
+                  0 3px 1px -2px rgba(0, 0, 0, .2),
+                  0 1px 5px 0 rgba(0, 0, 0, .12);
+    }
+    @media(min-width: 768px) {
+      .view-header--blog-title {
+        margin-left: 30px;
+      }
+      .menu.icon {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body class="hgl-container">
+  <header class="hgl-header__above view-header__above shadow">
+    <i class="menu icon" onclick="console.log('test')"></i>
+    <a><span class="view-header--blog-title view-common--title">BLOG TITLE</span></a>
+  </header>
+
+  <header class="hgl-header__below view-header__bellow shadow">
+    <h1 class="view-header--page-title view-common--title">PAGE TITLE</h1>
+  </header>
+
+  <nav class="hgl-middle__left">
+    <header><span>Menu</span></header>
+    <ul>
+      <li><a>Menu1</a></li>
+      <li><a>Menu2</a></li>
+      <li><a>Menu3</a></li>
+    </ul>
+  </nav>
+  <main class="hgl-middle__center">
+    <header><h1>PAGE TITLE</h1></header>
+    <article>
+      <header><h1>ARTICLE TITLE1</h1></header>
+      <p>Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text.</p>
+    </article>
+    <article>
+      <header><h1>ARTICLE TITLE2</h1></header>
+      <p>Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text. Sample Text.</p>
+    </article>
+  </main>
+  <aside class="hgl-middle__right">
+    <header><span>ASIDE TITLE</span></header>
+  </aside>
+  <footer class="hgl-footer view-footer">
+    <a><span>SAMPLE BLOG</span></a>
+  </footer>
+</middle>
+</html>

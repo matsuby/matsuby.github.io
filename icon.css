@@ -1,0 +1,31 @@
+.menu.icon {
+  color: #fff;
+  position: absolute;
+  left: .5px;
+  margin-left: 18px;
+  margin-top: 27px;
+  width: 19px;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 1px;
+}
+.menu.icon:before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 19px;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 1px;
+}
+.menu.icon:after {
+  content: '';
+  position: inherit;
+  top: 5px;
+  left: 0;
+  width: 19px;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 1px;
+}
