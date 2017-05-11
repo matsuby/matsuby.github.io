@@ -1,0 +1,41 @@
+/*! Layout: Holy Grid Layout. */
+.hgl-header       { grid-area: header; }
+.hgl-body__left   { grid-area: body-left; }
+.hgl-body__center { grid-area: body-center; }
+.hgl-body__right  { grid-area: body-right; }
+.hgl-footer       { grid-area: footer; }
+.hgl-container {
+  display: grid;
+  grid-template-rows: 80px
+                      1fr
+                      60px;
+  min-height: 100vh;
+}
+@media (max-width: 768px) {
+  .hgl-container {
+    grid-template-areas: "header"
+                         "body-center"
+                         "footer";
+    grid-template-columns: 1fr;
+  }
+  .hgl-container.open-nav {
+    grid-template-areas: "body-left header"
+                         "body-left body-center"
+                         "body-left footer";
+    grid-template-columns: 40% 1fr;
+  }
+  .hgl-body__left, .hgl-body__right {
+    display: none;
+  }
+  .hgl-body__left.open-nav {
+    display: block;
+  }
+}
+@media (min-width: 769px) {
+  .hgl-container {
+    grid-template-areas: "header header header"
+                         "body-left body-center body-right"
+                         "footer footer footer";
+    grid-template-columns: 180px 1fr 180px;
+  }
+}

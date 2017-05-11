@@ -1,0 +1,42 @@
+/*! Layout */
+
+/* Header, Footer */
+.hgl-header__above, .hgl-header__below {
+  height: 40px;
+}
+.header__below--pagetitle {
+  padding: 10px 15px;
+}
+@media (max-width: 768px) {
+  i.icono-bars {
+    margin: 20px 15px;
+  }
+  .header__above--sitetitle {
+    position: relative;
+    top: 2px;
+  }
+}
+@media (min-width: 769px) {
+  i.icono-bars {
+    display: none;
+  }
+  .header__above--sitetitle {
+    display: inline-block;
+    margin: 10px 15px;
+  }
+}
+.footer__metainfo {
+  padding: 10px;
+}
+
+/* Nav, Main, Aside */
+.main, .aside {
+  padding: 12px;
+}
+.nav__header {
+  padding: 12px 0 5px 12px;
+}
+.nav__menulist--item {
+  padding-left: 1.2em;
+  line-height: 3em;
+}

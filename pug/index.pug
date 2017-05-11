@@ -1,0 +1,72 @@
+doctype html
+html(lang='ja')
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0")
+    meta(name="description", content="This is Pug sample page.")
+    title Sample Pug
+    style
+      include includes/inline-style/reset.min.css
+      include includes/inline-style/hgl_layout.min.css
+      include includes/inline-style/layout.min.css
+      include includes/inline-style/view.min.css
+      include includes/inline-style/icon.min.css
+  body.hgl-container
+    header.hgl-header.header
+      div.hgl-header__above.shadow
+        i.icono-bars
+        a: span.header__above--sitetitle Site Title
+      div.hgl-header__below.shadow
+        h1.header__below--pagetitle Page Title
+    nav.hgl-body__left.nav.shadow
+      header.nav__header Navigation Title
+      ul.nav__menulist
+        li.nav__menulist--item: a(href="#") Menu1
+        li.nav__menulist--item: a(href="#") Menu2
+        li.nav__menulist--item: a(href="#") Menu3
+    main.hgl-body__center.main.shadow
+      - for (var i = 0; i < 3; ++i) {
+        if i !== 0
+          hr
+        article
+          header
+            h1 Article Title
+          p
+            | Lorem ipsum dolor sit amet,
+            | consectetur adipiscing elit,
+            | sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            | Ut enim ad minim veniam,
+            | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            | Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            | Excepteur sint occaecat cupidatat non proident,
+            | sunt in culpa qui officia deserunt mollit anim id est laborum.
+      - }
+    aside.hgl-body__right.aside.shadow
+        header Aside Title
+    footer.hgl-footer.footer
+      div.footer__metainfo
+        p Author is <a href="https://github.com/matsuby" rel="author">matsuby</a>.
+        p Update is <time datetime="2017-05-12">2017/05/12</time>.
+    script.
+      {
+        'use strict';
+        let container = document.body;
+        let header    = document.querySelector('.header');
+        let main      = document.querySelector('.main');
+        let footer    = document.querySelector('.footer');
+        let nav       = document.querySelector('.nav');
+
+        let bar_btn   = document.querySelector('.icono-bars');
+        bar_btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          container.classList.add("open-nav");
+          nav.classList.add("open-nav");
+
+          [header, main, footer].forEach((item) => {
+            item.addEventListener('click', () => {
+              container.classList.remove("open-nav");
+              nav.classList.remove("open-nav");
+            }, { once: true, passive: true });
+          });
+        });
+      }

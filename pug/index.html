@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="This is Pug sample page.">
+    <title>Sample Pug</title>
+    <style>
+      
+/* Reset */
+body,h1,h2,h3,h4,h5,h6,p,ul{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}
+      
+/* Layout: Holy Grid Layout. */
+.hgl-header{grid-area:header}.hgl-body__left{grid-area:body-left}.hgl-body__center{grid-area:body-center}.hgl-body__right{grid-area:body-right}.hgl-footer{grid-area:footer}.hgl-container{display:grid;grid-template-rows:80px 1fr 60px;min-height:100vh}@media(max-width:768px){.hgl-container{grid-template-areas:"header" "body-center" "footer";grid-template-columns:1fr}.hgl-container.open-nav{grid-template-areas:"body-left header" "body-left body-center" "body-left footer";grid-template-columns:40% 1fr}.hgl-body__left,.hgl-body__right{display:none}.hgl-body__left.open-nav{display:block}}@media(min-width:769px){.hgl-container{grid-template-areas:"header header header" "body-left body-center body-right" "footer footer footer";grid-template-columns:180px 1fr 180px}}
+      
+/* Layout */
+.hgl-header__above,.hgl-header__below{height:40px}.header__below--pagetitle{padding:10px 15px}@media(max-width:768px){i.icono-bars{margin:20px 15px}.header__above--sitetitle{position:relative;top:2px}}@media(min-width:769px){i.icono-bars{display:none}.header__above--sitetitle{display:inline-block;margin:10px 15px}}.footer__metainfo{padding:10px}.main,.aside{padding:12px}.nav__header{padding:12px 0 5px 12px}.nav__menulist--item{padding-left:1.2em;line-height:3em}
+      
+/* View */
+.hgl-container.open-nav .header,.hgl-container.open-nav .main,.hgl-container.open-nav .footer{background-color:#ddd;opacity:.6}.shadow{box-shadow:0 2px 2px 0 rgba(0,0,0,0),0 3px 1px -2px rgba(0,0,0,.1),0 1px 5px 0 rgba(0,0,0,.1)}.header__above--sitetitle,.header__below--pagetitle{font-size:20px;font-weight:400;font-family:"Roboto","Helvetica","Arial",sans-serif;letter-spacing:.02em}.footer__metainfo{color:#999;text-align:center;font-size:14px;font-style:italic}.nav__menulist--item{list-style-type:none}.nav__menulist--item:hover{background-color:#ddd}.nav__menulist--item>a{font-size:15px;text-decoration:none}
+      
+/* Icon */
+
+/* License: from icono: https://github.com/saeedalipoor/icono */
+.icono-bars,.icono-hamburger{width:20px;height:2px;box-shadow:inset 0 0 0 32px,0 -6px,0 6px;margin:16px 7px}[class*=icono-]{display:inline-block;vertical-align:middle;position:relative;font-style:normal;color:#ddd;text-align:left;text-indent:-9999px;direction:ltr}[class*=icono-]:after,[class*=icono-]:before{content:'';pointer-events:none}[class*=icono-],[class*=icono-] *{box-sizing:border-box}.icono-bars,.icono-hamburger{color:#000}
+
+    </style>
+  </head>
+  <body class="hgl-container">
+    <header class="hgl-header header">
+      <div class="hgl-header__above shadow"><i class="icono-bars"></i><a><span class="header__above--sitetitle">Site Title</span></a></div>
+      <div class="hgl-header__below shadow">
+        <h1 class="header__below--pagetitle">Page Title</h1>
+      </div>
+    </header>
+    <nav class="hgl-body__left nav shadow">
+      <header class="nav__header">Navigation Title</header>
+      <ul class="nav__menulist">
+        <li class="nav__menulist--item"><a href="#">Menu1</a></li>
+        <li class="nav__menulist--item"><a href="#">Menu2</a></li>
+        <li class="nav__menulist--item"><a href="#">Menu3</a></li>
+      </ul>
+    </nav>
+    <main class="hgl-body__center main shadow">
+      <article>
+        <header>
+          <h1>Article Title</h1>
+        </header>
+        <p>
+          Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident,
+          sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </article>
+      <hr>
+      <article>
+        <header>
+          <h1>Article Title</h1>
+        </header>
+        <p>
+          Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident,
+          sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </article>
+      <hr>
+      <article>
+        <header>
+          <h1>Article Title</h1>
+        </header>
+        <p>
+          Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident,
+          sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </article>
+    </main>
+    <aside class="hgl-body__right aside shadow">
+      <header>Aside Title</header>
+    </aside>
+    <footer class="hgl-footer footer">
+      <div class="footer__metainfo">
+        <p>Author is <a href="https://github.com/matsuby" rel="author">matsuby</a>.</p>
+        <p>Update is <time datetime="2017-05-12">2017/05/12</time>.</p>
+      </div>
+    </footer>
+    <script>
+      {
+        'use strict';
+        let container = document.body;
+        let header    = document.querySelector('.header');
+        let main      = document.querySelector('.main');
+        let footer    = document.querySelector('.footer');
+        let nav       = document.querySelector('.nav');
+      
+        let bar_btn   = document.querySelector('.icono-bars');
+        bar_btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          container.classList.add("open-nav");
+          nav.classList.add("open-nav");
+      
+          [header, main, footer].forEach((item) => {
+            item.addEventListener('click', () => {
+              container.classList.remove("open-nav");
+              nav.classList.remove("open-nav");
+            }, { once: true, passive: true });
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
