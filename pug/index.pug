@@ -17,7 +17,7 @@ html(lang='ja')
         i.icono-bars
         a: span.header__above--sitetitle Site Title
       div.hgl-header__below.shadow
-        h1.header__below--pagetitle Page Title
+        span.header__below--pagetitle Page Title
     nav.hgl-body__left.nav.shadow
       header.nav__header Navigation Title
       ul.nav__menulist
@@ -30,7 +30,7 @@ html(lang='ja')
           hr
         article
           header
-            h1 Article Title
+            h2 Article Title #{i+1}
           p
             | Lorem ipsum dolor sit amet,
             | consectetur adipiscing elit,
@@ -48,8 +48,8 @@ html(lang='ja')
         p Author is <a href="https://github.com/matsuby" rel="author">matsuby</a>.
         p Update is <time datetime="2017-05-12">2017/05/12</time>.
     script.
+      'use strict';
       {
-        'use strict';
         let container = document.body;
         let header    = document.querySelector('.header');
         let main      = document.querySelector('.main');
