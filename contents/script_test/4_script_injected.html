@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4. Script-injected</title>
+  <style>h1 { font-style: italic; }</style>
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> -->
+  <script>
+    (function(){
+      var tag = document.createElement('script');
+      tag.src = 'https://code.jquery.com/jquery-3.2.1.slim.min.js';
+      document.head.appendChild(tag);
+    })();
+  </script>
+</head>
+<body>
+  <h1>4. Script-injected</h1>
+  <p>scriptタグの動的追加</p>
+</body>
+</html>
