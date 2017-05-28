@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>asynchronous que test</title>
+  <script async class="js-hide-doc" src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  <script class="js-hide-doc">
+    document.addEventListener('DOMContentLoaded', () => {
+      var docSourceArea = document.getElementById('js-doc-source-area')
+         ,docDom = document.documentElement.cloneNode(true)
+         ,delNodes = docDom.querySelectorAll('.js-hide-doc');
+      [].forEach.call(delNodes, (node) => {
+        node.parentNode.removeChild(node);
+      });
+      var docSource = docDom.outerHTML
+        .replace(/<html><head>/, '<html>\n<head>')
+        .replace(/<\/body><\/html>/, '</body>\n</html>')
+        .replace(/\s+\n/g, '\n')
+        .replace(/\n+/g, '\n')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      docSourceArea.innerHTML = docSource;
+
+    });
+  </script>
+</head>
+<body>
+  <pre id="js-doc-source-area" class="prettyprint lang-html js-hide-doc" style="white-space: pre-wrap"></pre>
+  <script>
+    /* inline before */
+    var async_que = async_que || [];
+    async_que.push(() => {
+      async_que.test('inline before');
+    });
+  </script>
+  <script async src="external_before.js"></script>
+  <!--
+    /* external_before.js */
+    var async_que = async_que || [];
+    async_que.push(() => {
+      async_que.test('external before');
+    });
+  -->
+  <script async src="async_que_host.js"></script>
+  <!--
+    /* async_que_host.js */
+    var async_que = async_que || [];
+
+    // hosted function.
+    async_que.test = (str) => {
+      console.log(str)
+    };
+
+    // exec registered queue.
+    if (async_que.length >= 1) {
+      async_que.forEach((f) => f());
+    }
+
+    // change push to immediately execute.
+    async_que.push = (f) => f();
+  -->
+  <script async src="external_after.js"></script>
+  <!--
+    /* external_after.js */
+    var async_que = async_que || [];
+    async_que.push(() => {
+      async_que.test('external after');
+    });
+  -->
+  <script>
+    /* inline after */
+    async_que.push(() => {
+      async_que.test('inline after');
+    });
+  </script>
+</body>
+
+</html>
